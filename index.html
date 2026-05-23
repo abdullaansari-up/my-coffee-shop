@@ -1,75 +1,427 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Roast & Bloom Coffee</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Precision Print Co. | Corporate Printing Services</title>
+  <style>
+    :root {
+      --bg: #f5f8fb;
+      --surface: #ffffff;
+      --primary: #1f4f72;
+      --primary-soft: #2f6b98;
+      --accent: #f2b33d;
+      --text: #1f2d3d;
+      --muted: #6b7a8a;
+      --radius: 18px;
+      --shadow: 0 24px 60px rgba(31, 47, 66, 0.08);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(180deg, #edf3f8 0%, #f8fbfd 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .page {
+      width: min(1200px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 30px 0 80px;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: 0.08em;
+      color: var(--primary);
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 48px;
+      align-items: center;
+      padding: 64px 0 64px;
+    }
+
+    .hero-copy {
+      max-width: 600px;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.8rem, 4vw, 4.4rem);
+      margin: 0;
+      line-height: 1.03;
+      font-weight: 800;
+      color: #102134;
+    }
+
+    .hero-text {
+      margin: 26px 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 520px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .button-primary,
+    .button-secondary {
+      border: none;
+      padding: 16px 28px;
+      border-radius: 999px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .button-primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 18px 35px rgba(31, 79, 135, 0.18);
+    }
+
+    .button-primary:hover {
+      transform: translateY(-2px);
+      background: var(--primary-soft);
+    }
+
+    .button-secondary {
+      background: rgba(31, 79, 135, 0.08);
+      color: var(--primary);
+    }
+
+    .hero-image {
+      position: relative;
+      min-height: 420px;
+      background: linear-gradient(180deg, rgba(31,79,114,0.04) 0%, rgba(255,255,255,0.75) 100%),
+                  url('https://images.unsplash.com/photo-1519741491669-7ef6722a7d2b?auto=format&fit=crop&w=900&q=80') center/cover no-repeat;
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(242,179,61,0.22), transparent 32%),
+                  radial-gradient(circle at bottom left, rgba(31,79,114,0.16), transparent 28%);
+    }
+
+    .services,
+    .about,
+    .footer {
+      padding: 64px 0;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+      color: var(--primary);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.85rem;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      margin: 0;
+      max-width: 680px;
+      color: #111827;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .service-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 30px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(31, 47, 66, 0.06);
+      display: grid;
+      gap: 18px;
+    }
+
+    .service-card h3 {
+      margin: 0;
+      font-size: 1.25rem;
+      color: var(--primary);
+    }
+
+    .service-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .service-card span {
+      display: inline-flex;
+      width: 46px;
+      height: 46px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      background: rgba(31, 79, 114, 0.08);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .about-copy {
+      max-width: 520px;
+    }
+
+    .about-copy h3 {
+      margin: 0;
+      font-size: 1.45rem;
+      color: var(--primary);
+    }
+
+    .about-copy p {
+      color: var(--muted);
+      margin: 18px 0 0;
+    }
+
+    .about-stats {
+      display: grid;
+      gap: 20px;
+    }
+
+    .stat {
+      background: #fff;
+      padding: 28px;
+      border-radius: 22px;
+      box-shadow: 0 20px 45px rgba(31, 47, 66, 0.06);
+    }
+
+    .stat h4 {
+      margin: 0;
+      font-size: 2rem;
+      color: var(--primary);
+    }
+
+    .stat p {
+      margin: 8px 0 0;
+      color: var(--muted);
+    }
+
+    .footer {
+      border-top: 1px solid rgba(31, 47, 66, 0.08);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .footer h3 {
+      margin-top: 0;
+      font-size: 1.1rem;
+      color: var(--primary);
+    }
+
+    .footer p,
+    .footer a {
+      color: var(--muted);
+      text-decoration: none;
+      line-height: 1.8;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .about-content,
+      .footer-grid,
+      .service-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        gap: 32px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        width: calc(100% - 24px);
+      }
+
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .hero {
+        padding-top: 40px;
+      }
+
+      .hero-text,
+      .about-copy {
+        max-width: 100%;
+      }
+
+      .service-card {
+        padding: 24px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div class="hero">
-    <div class="hero__content">
-      <p class="eyebrow">Fresh beans. Cozy vibes.</p>
-      <h1>Roast & Bloom</h1>
-      <p class="hero__text">A modern coffee shop experience with small-batch roasts, seasonal drinks, and a welcoming atmosphere.</p>
-      <div class="hero__actions">
-        <a class="btn btn--primary" href="#menu">View Menu</a>
-        <a class="btn btn--secondary" href="#visit">Visit Us</a>
-      </div>
-      <div class="stats">
-        <div class="stat-item">
-          <span class="stat-number">12+</span>
-          <span class="stat-label">Specialty Drinks</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">5</span>
-          <span class="stat-label">Daily Bakes</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">1</span>
-          <span class="stat-label">Community Space</span>
-        </div>
-      </div>
-    </div>
-    <div class="hero__image"></div>
-  </div>
+  <main class="page">
+    <header class="navbar">
+      <a class="brand" href="#">Precision Print Co.</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
 
-  <section class="section section--cards" id="menu">
-    <h2>What’s brewing today?</h2>
-    <div class="card-grid">
-      <article class="card">
-        <h3>House Espresso</h3>
-        <p>Rich, velvety espresso pulled from our signature blend.</p>
-      </article>
-      <article class="card">
-        <h3>Oat Milk Latte</h3>
-        <p>Creamy latte with toasted oat notes and cinnamon finish.</p>
-      </article>
-      <article class="card">
-        <h3>Cold Brew</h3>
-        <p>Smooth cold brew steeped overnight for a clean, bold taste.</p>
-      </article>
-    </div>
-  </section>
-
-  <section class="section section--visit" id="visit">
-    <div>
-      <h2>Stop by for a cup</h2>
-      <p>Find us in the heart of downtown. Good coffee, friendly faces, and space to linger.</p>
-      <div class="visit-details">
-        <div>
-          <strong>Hours</strong>
-          <p>Mon - Fri: 7am - 7pm</p>
-          <p>Sat - Sun: 8am - 5pm</p>
-        </div>
-        <div>
-          <strong>Location</strong>
-          <p>128 Maple Street, Suite 2</p>
-          <p>Downtown City</p>
+    <section id="home" class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow">Corporate Print Solutions</div>
+        <h1 class="hero-title">High-end printing services for enterprises that demand exceptional presentation.</h1>
+        <p class="hero-text">From premium brochures to branded packaging and office collateral, our precision-driven print services help businesses make a polished impression at every touchpoint.</p>
+        <div class="hero-actions">
+          <a class="button-primary" href="#contact">Request a quote</a>
+          <a class="button-secondary" href="#services">Explore services</a>
         </div>
       </div>
-    </div>
-    <div class="visit-photo"></div>
-  </section>
+      <div class="hero-image"></div>
+    </section>
+
+    <section id="services" class="services">
+      <div class="section-heading">Our Expertise</div>
+      <h2 class="section-title">Modern print solutions designed for corporate excellence.</h2>
+      <div class="service-grid">
+        <article class="service-card">
+          <span>01</span>
+          <h3>Executive Brochures</h3>
+          <p>Craft premium collateral with luxe finishes, spot UV, and bespoke layouts for annual reports, portfolios, and sales presentations.</p>
+        </article>
+        <article class="service-card">
+          <span>02</span>
+          <h3>Retail & Packaging</h3>
+          <p>Deliver a flawless unboxing experience with tailored packaging, custom labels, and durable print materials for brand impact.</p>
+        </article>
+        <article class="service-card">
+          <span>03</span>
+          <h3>Event & Signage</h3>
+          <p>Support conferences, exhibitions and corporate events with striking banners, backdrops, display stands and signage solutions.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="section-heading">About Us</div>
+      <h2 class="section-title">A trusted print partner for ambitious businesses.</h2>
+      <div class="about-content">
+        <div class="about-copy">
+          <h3>Precision delivery with premium quality.</h3>
+          <p>At Precision Print Co., we combine industry-leading production technology with white-glove service to ensure every print project reflects your brand’s professionalism. Our team manages everything from creative proofing to final delivery, so your marketing assets look impeccable every time.</p>
+        </div>
+        <div class="about-stats">
+          <div class="stat">
+            <h4>20+ years</h4>
+            <p>of experience delivering business print solutions.</p>
+          </div>
+          <div class="stat">
+            <h4>99.8%</h4>
+            <p>on-time delivery rate for client campaigns and events.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer id="contact" class="footer">
+      <div class="footer-grid">
+        <div>
+          <h3>Contact Precision Print Co.</h3>
+          <p>Partner with a print service that delivers corporate-quality materials with fast turnarounds and attentive support.</p>
+        </div>
+        <div class="footer-links">
+          <a href="tel:+1234567890">Phone: +1 (234) 567-890</a>
+          <a href="mailto:hello@precisionprintco.com">Email: hello@precisionprintco.com</a>
+          <a href="#">123 Business Avenue, Suite 400<br>City, State ZIP</a>
+        </div>
+      </div>
+    </footer>
+  </main>
 </body>
 </html>
